@@ -1,0 +1,16 @@
+body{
+    
+    text-align: center ; 
+    color: greenyellow;
+}
+p{
+    font-size: 10;
+}
+head{
+    background-color: aliceblue;
+    text-align: center;
+}
+title{
+    background-color: black;
+    text-align: center;
+}
