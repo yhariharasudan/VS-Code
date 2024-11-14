@@ -26,19 +26,9 @@ public class execute {
         System.out.println("\nRunning Processes:");
         for (ProcessHandle process : allProcesses) {
             Optional<String> commandLine = process.info().commandLine();
-            String shortFormName = commandLine.map(cmd -> {
-                String[] parts = cmd.split("\\s+");
-                return parts[0].substring(parts[0].lastIndexOf("/") + 1);
-            }).orElse("Unknown");
+          
+            System.out.println(process.pid() + " " + commandLine);
 
-            if (shortFormName.equals("k3s")) {
-                System.out.println("PID: " + process.pid() + ", Command: " + shortFormName);
-                try {
-                    // Execute the ps command to get CPU usage
-                    Process psProcess = new ProcessBuilder("ps", "-p", String.valueOf(process.pid()), "-o", "%cpu").start();
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(psProcess.getInputStream()));
-                    String line = reader.readLine(); // Skip the header line
-                    line = reader.readLine(); // Read the CPU usage line
                     if (line != null) {
                         System.out.println("CPU Usage: " + line.trim() + "%");
                     }
